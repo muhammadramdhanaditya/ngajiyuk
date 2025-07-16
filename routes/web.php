@@ -25,3 +25,4 @@ Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])
 Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
 Route::get('/info', [App\Http\Controllers\InfoController::class, 'index'])->name('info');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');

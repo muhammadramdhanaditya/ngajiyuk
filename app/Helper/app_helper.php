@@ -11,3 +11,17 @@ if (!function_exists('route_has_active')) {
         return $currentUrl == $prefix;
     }
 }
+
+if (!function_exists('isAdmin')) {
+    function isAdmin($user)
+    {
+        return $user && $user->role === 'admin';
+    }
+}
+
+if (!function_exists('isUser')) {
+    function isUser($user)
+    {
+        return $user && $user->role === 'peserta';
+    }
+}
