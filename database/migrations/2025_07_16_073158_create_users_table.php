@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable(); // Nomor WA/telepon
+            $table->string('phone')->nullable();
             $table->string('profile_photo_url')->nullable();
-            $table->enum('role', ['admin', 'peserta'])->default('peserta'); // Role user
+            $table->enum('role', ['admin', 'peserta'])->default('peserta');
             $table->rememberToken();
             $table->timestamps();
         });

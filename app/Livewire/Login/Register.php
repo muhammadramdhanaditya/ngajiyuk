@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Login;
 
-use App\Models\User;
+use App\Models\UserModel;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+
 
 class Register extends Component
 {
@@ -14,7 +15,7 @@ class Register extends Component
         return view('livewire.login.register');
     }
 
-    public function store()
+    public function storeRegister()
     {
         $this->validate([
             'name' => 'required|string|max:255',
@@ -23,15 +24,17 @@ class Register extends Component
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        User::create([
+        UserModel::create([
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
             'password' => Hash::make($this->password),
             'role' => 'peserta',
         ]);
-
-        session()->flash('success', 'Registrasi berhasil! Silakan login.');
+        session()->flash('store', [
+            'title' => 'Berhasil membuat Akun',
+            'text' => 'Silahkan Login',
+        ]);
         return redirect()->route('login');
     }
 }

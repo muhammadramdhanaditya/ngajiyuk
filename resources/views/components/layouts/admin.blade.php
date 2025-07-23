@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
     @livewireStyles
 </head>
 
@@ -25,13 +26,27 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-auto w-100 mt-4">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ route('admin') }}"
+                                class="nav-link {{ route_has_active_admin('') ? 'active' : 'text-dark' }}">
                                 <i class="bi bi-house-door me-2"></i> Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-dark">
+                            <a href="{{ route('admin-class') }}"
+                                class="nav-link  {{ route_has_active_admin('class') ? 'active' : 'text-dark' }}">
                                 <i class="bi bi-journal-text me-2"></i> Kelas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin-teacher') }}"
+                                class="nav-link  {{ route_has_active_admin('teacher') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-person-video3 me-2"></i> Guru
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin-location') }}"
+                                class="nav-link  {{ route_has_active_admin('location') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-geo-alt-fill me-2"></i> Lokasi
                             </a>
                         </li>
                         <li>
@@ -62,25 +77,21 @@
                         <span></span>
                         <!-- Profile kanan -->
                         <div class="d-flex align-items-center">
-                            <span class="me-3 fw-semibold">Admin</span>
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
                                     id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="noimage" alt="profile" width="36" height="36"
-                                        class="rounded-circle">
+                                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('admin-profile') }}">
                                             <i class="bi bi-person-circle me-2"></i> Pengaturan Profil
                                         </a>
                                     </li>
                                     <li>
-                                        <form method="POST" action="#">
+                                        <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button class="dropdown-item" type="submit">
-                                                <i class="bi bi-box-arrow-right me-2"></i> Logout
-                                            </button>
+                                            <button type="submit" class="dropdown-item text-danger">Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -97,6 +108,12 @@
     </div>
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    @stack('scripts')
+    {{-- <livewire:livewire-alert::scripts />
+    <livewire:livewire-alert::flash /> --}}
 </body>
 
 </html>

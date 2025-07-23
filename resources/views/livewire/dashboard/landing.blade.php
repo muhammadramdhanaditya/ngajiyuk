@@ -8,19 +8,19 @@
                     <div class="carousel-inner ratio ratio-16x9 rounded-4 overflow-hidden">
                         <!-- overflow-hidden untuk memastikan rounded bekerja -->
                         <div class="carousel-item active">
-                            <img src="{{ url('/assets/image/ngaji-1.jpg') }}" class="d-block w-100 img-cover"
+                            <img src="{{ storage('public/assets/image/ngaji-1.jpg') }}" class="d-block w-100 img-cover"
                                 alt="Foto 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ url('/assets/image/ngaji-2.png') }}" class="d-block w-100 img-cover"
+                            <img src="{{ storage('public/assets/image/ngaji-2.png') }}" class="d-block w-100 img-cover"
                                 alt="Foto 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ url('/assets/image/ngaji-3.png') }}" class="d-block w-100 img-cover"
+                            <img src="{{ storage('public/assets/image/ngaji-3.png') }}" class="d-block w-100 img-cover"
                                 alt="Foto 3">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ url('/assets/image/ngaji-4.png') }}" class="d-block w-100 img-cover"
+                            <img src="{{ storage('public/assets/image/ngaji-4.png') }}" class="d-block w-100 img-cover"
                                 alt="Foto 4">
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 use App\Livewire\Login\Login;
 use App\Livewire\Login\Register;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,22 @@ Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])
 Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
 Route::get('/info', [App\Http\Controllers\InfoController::class, 'index'])->name('info');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/profile', [App\Http\Controllers\AdminController::class, 'profile'])->name('admin-profile');
+    Route::get('/admin/class', [App\Http\Controllers\AdminController::class, 'class'])->name('admin-class');
+    Route::get('/admin/location', [App\Http\Controllers\AdminController::class, 'location'])->name('admin-location');
+    Route::get('/admin/location/add', [App\Http\Controllers\AdminController::class, 'addLocation'])->name('admin-location-add');
+    Route::get('/admin/location/edit/{id}', [App\Http\Controllers\AdminController::class, 'editLocation'])->name('admin-location-edit');
+    Route::get('/admin/teacher', [App\Http\Controllers\AdminController::class, 'teacher'])->name('admin-teacher');
+    Route::get('/admin/class/add', [App\Http\Controllers\AdminController::class, 'addClass'])->name('admin-class-add');
+    Route::post('/logout', function () {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/')->with('success', 'Anda berhasil logout');
+    })->name('logout');
+});

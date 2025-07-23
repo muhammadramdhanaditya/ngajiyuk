@@ -8,7 +8,6 @@
             </div>
         </div>
         <div class="row g-4">
-            <!-- Kelas Tahsin -->
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
                     <div class="card-header bg-primary text-white py-3">
@@ -34,7 +33,6 @@
                 </div>
             </div>
 
-            <!-- Kelas Tahfidz -->
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
                     <div class="card-header bg-success text-white py-3">
@@ -60,7 +58,6 @@
                 </div>
             </div>
 
-            <!-- Kelas Anak-anak -->
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
                     <div class="card-header bg-warning text-dark py-3">
@@ -86,7 +83,6 @@
                 </div>
             </div>
 
-            <!-- Kelas Dewasa -->
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
                     <div class="card-header bg-info text-white py-3">
