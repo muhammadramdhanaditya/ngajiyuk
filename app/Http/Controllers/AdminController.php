@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassModel;
+use App\Models\TeacherModel;
 use App\Models\LocationModel;
 
 class AdminController extends Controller
@@ -24,6 +26,11 @@ class AdminController extends Controller
     {
         return view('admin.class.add');
     }
+    public function editClass($id)
+    {
+        $data['classes'] = ClassModel::find($id);
+        return view('admin.class.edit', $data);
+    }
 
     public function location()
     {
@@ -42,5 +49,14 @@ class AdminController extends Controller
     public function teacher()
     {
         return view('admin.teacher.index');
+    }
+    public function addTeacher()
+    {
+        return view('admin.teacher.add');
+    }
+    public function editTeacher($id)
+    {
+        $data['teacher'] = TeacherModel::find($id);
+        return view('admin.teacher.edit', $data);
     }
 }

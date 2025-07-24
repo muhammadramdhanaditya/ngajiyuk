@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('type', ['online', 'offline']);
             $table->string('link');
             $table->string('detail_address');
-            $table->string('note');
+            $table->text('note');
             $table->timestamps();
         });
     }

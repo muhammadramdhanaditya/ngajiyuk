@@ -14,6 +14,7 @@ class Add extends Component
     public $link;
     public $detail_address;
     public $note;
+
     public function render()
     {
         return view('livewire.admin.location.add');

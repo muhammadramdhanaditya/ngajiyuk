@@ -1,10 +1,10 @@
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
-            <h5>Tambah Kelas Belajar</h5>
+            <h5>Edit Kelas Belajar</h5>
         </div>
         <div class="card-body">
-            <form method="POST" wire:submit.prevent="storeClass">
+            <form method="POST" wire:submit.prevent="storeEditClass">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama Kelas</label>

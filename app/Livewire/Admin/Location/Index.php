@@ -30,7 +30,6 @@ class Index extends Component
     public function destroy($id)
     {
         LocationModel::destroy($id);
-
         session()->flash('store', [
             'title' => 'Berhasil Menghapus Lokasi',
         ]);

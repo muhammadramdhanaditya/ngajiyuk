@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['online', 'offline']);
-            $table->string('teacher_id');
-            $table->string('location_id');
+            $table->bigInteger('teacher_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned();
             $table->json('day');
             $table->string('time_start');
             $table->string('time_end');
             $table->enum('timezone', ['WIB', 'WITA', 'WIT']);
             $table->string('price');
             $table->string('color');
-            $table->string('note');
+            $table->text('note');
             $table->timestamps();
         });
     }

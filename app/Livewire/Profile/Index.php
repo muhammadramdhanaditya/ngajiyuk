@@ -69,7 +69,7 @@ class Index extends Component
             if ($this->profilePhotoUrl) {
                 Storage::delete(str_replace('/storage', 'public', $this->profilePhotoUrl));
             }
-            $path = $this->profilePhoto->store('public/profile-photos');
+            $path = $this->profilePhoto->store('public/profile-teacher');
             $data['profile_photo_url'] = Storage::url($path);
             $this->profilePhotoUrl = $data['profile_photo_url'];
         }

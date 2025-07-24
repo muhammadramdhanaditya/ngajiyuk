@@ -16,7 +16,6 @@
 <body class="antialiased">
     <div class="container-fluid">
         <div class="row flex-nowrap min-vh-100">
-            <!-- Sidebar -->
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white border-end shadow-sm">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 min-vh-100">
                     <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
@@ -64,18 +63,13 @@
                                 <i class="bi bi-images me-2"></i> Galeri
                             </a>
                         </li>
-                        <!-- Tambahkan menu lain sesuai kebutuhan -->
                     </ul>
                 </div>
             </div>
-            <!-- Main Content -->
             <div class="col p-0">
-                <!-- Navbar Atas -->
                 <nav class="navbar navbar-light bg-white shadow-sm px-4">
                     <div class="container-fluid">
-                        <!-- Logo kiri (hanya icon, sudah ada di sidebar) -->
                         <span></span>
-                        <!-- Profile kanan -->
                         <div class="d-flex align-items-center">
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
@@ -99,7 +93,6 @@
                         </div>
                     </div>
                 </nav>
-                <!-- Konten -->
                 <main class="p-4">
                     @yield('content')
                 </main>

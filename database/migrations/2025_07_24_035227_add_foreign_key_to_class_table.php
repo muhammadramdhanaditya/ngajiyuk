@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_class', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('class_id')->unsigned();
-            $table->enum('visibility', ['show', 'off']);
-            $table->timestamps();
+        Schema::table('class', function (Blueprint $table) {
+            $table->foreign('teacher_id')->references('id')->on('teacher')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('location')->onDelete('cascade');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_user_class');
+        Schema::table('class', function (Blueprint $table) {
+            //
+        });
     }
 };

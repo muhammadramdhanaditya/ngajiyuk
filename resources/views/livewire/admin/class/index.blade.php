@@ -16,33 +16,27 @@
                                 <th>No</th>
                                 <th>Nama Kelas</th>
                                 <th>Pengajar</th>
-                                <th>Jumlah Peserta</th>
+                                <th>Lokasi</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Kelas Tahsin Dasar</td>
-                                <td>Ustadz Ahmad</td>
-                                <td>25</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info">Detail</button>
-                                    <button class="btn btn-sm btn-warning">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Hapus</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Kelas Tahfidz</td>
-                                <td>Ustadzah Siti</td>
-                                <td>18</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info">Detail</button>
-                                    <button class="btn btn-sm btn-warning">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Hapus</button>
-                                </td>
-                            </tr>
+                            @foreach ($classes as $i => $class)
+                                <tr>
+                                    <td>{{ $i + 1 }}</td>
+                                    <td>{{ $class->name }}</td>
+                                    <td>{{ ucfirst($class->teacher->name) }}</td>
+                                    <td>{{ ucfirst($class->location->name) }}</td>
+                                    <td>{{ $class->note }}</td>
+                                    <td>
+                                        <a href="{{ route('admin-class-edit', $class->id) }}"
+                                            class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                                        <button wire:click="destroy({{ $class->id }})"
+                                            class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

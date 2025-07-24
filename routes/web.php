@@ -32,12 +32,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
     Route::get('/admin/profile', [App\Http\Controllers\AdminController::class, 'profile'])->name('admin-profile');
-    Route::get('/admin/class', [App\Http\Controllers\AdminController::class, 'class'])->name('admin-class');
     Route::get('/admin/location', [App\Http\Controllers\AdminController::class, 'location'])->name('admin-location');
     Route::get('/admin/location/add', [App\Http\Controllers\AdminController::class, 'addLocation'])->name('admin-location-add');
     Route::get('/admin/location/edit/{id}', [App\Http\Controllers\AdminController::class, 'editLocation'])->name('admin-location-edit');
     Route::get('/admin/teacher', [App\Http\Controllers\AdminController::class, 'teacher'])->name('admin-teacher');
+    Route::get('/admin/teacher/add', [App\Http\Controllers\AdminController::class, 'addTeacher'])->name('admin-teacher-add');
+    Route::get('/admin/teacher/edit/{id}', [App\Http\Controllers\AdminController::class, 'editTeacher'])->name('admin-teacher-edit');
+    Route::get('/admin/class', [App\Http\Controllers\AdminController::class, 'class'])->name('admin-class');
     Route::get('/admin/class/add', [App\Http\Controllers\AdminController::class, 'addClass'])->name('admin-class-add');
+    Route::get('/admin/class/edit/{id}', [App\Http\Controllers\AdminController::class, 'editClass'])->name('admin-class-edit');
+
+
     Route::post('/logout', function () {
         Auth::logout();
         request()->session()->invalidate();
