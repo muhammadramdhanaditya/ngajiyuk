@@ -57,8 +57,6 @@
                                                     {{ $user->is_admin_request != 1 ? 'disabled' : '' }}>Terima</button>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin-class-edit', $user->id) }}"
-                                                    class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
                                                 <button wire:click="destroy({{ $user->id }})"
                                                     class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
                                             </td>
@@ -98,8 +96,6 @@
                                                     Admin</button>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin-class-edit', $admin->id) }}"
-                                                    class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
                                                 <button wire:click="destroy({{ $admin->id }})"
                                                     class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
                                             </td>
