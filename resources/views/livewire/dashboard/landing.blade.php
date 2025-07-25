@@ -76,7 +76,7 @@
                                     <div class="card-footer bg-transparent border-top-0 pb-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="fw-bold text-primary">Rp
-                                                {{ format_rupiah($class->price) }}/bulan</span>
+                                                {{ format_rupiah($class->price) }}</span>
                                             <button class="btn btn-primary btn-sm">Daftar</button>
                                         </div>
                                     </div>

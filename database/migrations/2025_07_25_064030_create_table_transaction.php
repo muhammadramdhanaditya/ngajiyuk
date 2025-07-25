@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_class', function (Blueprint $table) {
+        Schema::create('transaction', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('users_id')->unsigned();
             $table->bigInteger('class_id')->unsigned();
-            $table->enum('visibility', ['show', 'off']);
+            $table->string('bukti_transfer_url');
+            $table->boolean('is_accepted');
             $table->timestamps();
-
 
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('class_id')->references('id')->on('class')->onDelete('cascade');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_user_class');
+        Schema::dropIfExists('transaction');
     }
 };
