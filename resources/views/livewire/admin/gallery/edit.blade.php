@@ -7,12 +7,12 @@
             <form method="POST" wire:submit.prevent="storeEditGallery">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nama Gallery</label>
+                    <label for="name" class="form-label fw-bold">Nama Gallery</label>
                     <input type="text" class="form-control" id="name" name="name" wire:model="name"
                         placeholder="Masukkan nama gallery">
                 </div>
                 <div class="mb-3">
-                    <label for="note" class="form-label">Catatan</label>
+                    <label for="note" class="form-label fw-bold">Catatan</label>
                     <textarea class="form-control" id="note" name="note" rows="3" placeholder="Masukkan deskripsi gallery"
                         wire:model="note"></textarea>
                 </div>

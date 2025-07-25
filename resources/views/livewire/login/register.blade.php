@@ -4,7 +4,7 @@
         <form method="POST" wire:submit.prevent="storeRegister">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Lengkap</label>
+                <label for="name" class="form-label fw-bold">Nama Lengkap</label>
                 <input type="text" wire:model="name" class="form-control" id="name" name="name" required
                     autofocus>
                 @error('name')
@@ -12,14 +12,14 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label fw-bold">Email</label>
                 <input type="email" wire:model="email" class="form-control" id="email" name="email" required>
                 @error('email')
                     <div class="text-danger small">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Nomor WhatsApp/Telepon</label>
+                <label for="phone" class="form-label fw-bold">Nomor WhatsApp/Telepon</label>
                 <input type="text" wire:model="phone" class="form-control" id="phone" name="phone" required
                     placeholder="08xxxxxxxxxx">
                 @error('phone')
@@ -27,7 +27,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Kata Sandi</label>
+                <label for="password" class="form-label fw-bold">Kata Sandi</label>
                 <input type="password" wire:model="password" class="form-control" id="password" name="password"
                     required>
                 @error('password')
@@ -35,7 +35,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
+                <label for="password_confirmation" class="form-label fw-bold">Konfirmasi Kata Sandi</label>
                 <input type="password" wire:model="password_confirmation" class="form-control"
                     id="password_confirmation" name="password_confirmation" required>
                 @error('password_confirmation')

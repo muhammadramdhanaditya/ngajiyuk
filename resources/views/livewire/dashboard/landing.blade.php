@@ -33,9 +33,9 @@
 
     {{-- 2. Info/Ajakan untuk Mengaji --}}
     <section class="text-center mb-5">
-        <h2 class="fw-bold mb-3">Ayo Mulai Mengaji Bersama NgajiYuk!</h2>
-        <p class="lead mb-4">Gabung bersama komunitas kami untuk memperdalam ilmu Al-Qur'an dan mempererat ukhuwah
-            Islamiyah.</p>
+        <h2 class="fw-bold mb-3">{{ $settings->title_home }}</h2>
+        <p class="lead mb-4">{{ $settings->note_home }}</p>
+
         <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Daftar Sekarang</a>
     </section>
 

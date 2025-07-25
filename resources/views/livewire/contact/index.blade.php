@@ -15,22 +15,22 @@
                         <form method="POST" wire:submit.prevent="storeContactUs">
                             @csrf
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
+                                <label for="nama" class="form-label fw-bold">Nama</label>
                                 <input type="text" class="form-control" id="nama" placeholder="Nama Anda"
                                     wire:model="name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label fw-bold">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="email@domain.com"
                                     wire:model="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Telepon</label>
+                                <label for="phone" class="form-label fw-bold">Telepon</label>
                                 <input type="text" class="form-control" id="phone" placeholder="08xxxxxxx"
                                     wire:model="phone" required>
                             </div>
                             <div class="mb-3">
-                                <label for="message" class="form-label">Pesan</label>
+                                <label for="message" class="form-label fw-bold">Pesan</label>
                                 <textarea class="form-control" id="message" rows="4" wire:model="message" placeholder="Tulis pesan Anda..."
                                     required></textarea>
                             </div>

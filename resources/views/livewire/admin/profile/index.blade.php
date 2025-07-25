@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-6 mb-3"><label for="name" class="form-label">Nama
+                                        <div class="col-md-6 mb-3"><label for="name" class="form-label fw-bold">Nama
                                                 Lengkap</label><input type="text" id="name"
                                                 wire:model.defer="name"
                                                 class="form-control @error('name') is-invalid @enderror">
@@ -50,9 +50,11 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6 mb-3"><label for="email"
-                                                class="form-label">Email</label><input type="email" id="email"
-                                                wire:model.defer="email" class="form-control" disabled></div>
-                                        <div class="col-md-6 mb-3"><label for="phone" class="form-label">Nomor
+                                                class="form-label fw-bold">Email</label><input type="email"
+                                                id="email" wire:model.defer="email" class="form-control" disabled>
+                                        </div>
+                                        <div class="col-md-6 mb-3"><label for="phone"
+                                                class="form-label fw-bold">Nomor
                                                 Telepon</label><input type="text" id="phone"
                                                 wire:model.defer="phone"
                                                 class="form-control @error('phone') is-invalid @enderror">
@@ -60,7 +62,7 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6 mb-3"><label class="form-label">Role</label>
+                                        <div class="col-md-6 mb-3"><label class="form-label fw-bold">Role</label>
                                             <p class="form-control-plaintext">{{ ucfirst($role) }}</p>
                                         </div>
                                     </div>

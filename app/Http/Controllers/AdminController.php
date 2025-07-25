@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassModel;
 use App\Models\GalleryModel;
+use App\Models\SettingModel;
 use App\Models\TeacherModel;
 use App\Models\LocationModel;
 
@@ -69,6 +70,13 @@ class AdminController extends Controller
     public function contact()
     {
         return view('admin.contact.index');
+    }
+
+    public function setting()
+    {
+
+        $data['settings'] = SettingModel::first();
+        return view('admin.setting.index', $data);
     }
 
     public function gallery()

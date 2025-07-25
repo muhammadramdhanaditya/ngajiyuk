@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_setting', function (Blueprint $table) {
+        Schema::create('setting', function (Blueprint $table) {
             $table->id();
+            $table->string('title_home');
+            $table->string('note_home');
+            $table->string('qr_code_url');
+            $table->string('name');
+            $table->string('name_bank');
+            $table->string('number_bank');
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_setting');
+        Schema::dropIfExists('setting');
     }
 };

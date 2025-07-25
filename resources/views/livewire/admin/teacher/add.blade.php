@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nama Guru</label>
+                    <label for="name" class="form-label fw-bold">Nama Guru</label>
                     <input type="text" class="form-control" id="name" name="name"
                         placeholder="Masukkan nama Guru" wire:model="name">
                     @error('name')
@@ -42,12 +42,12 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="form-label">Kategori</label>
+                    <label for="category" class="form-label fw-bold">Kategori</label>
                     <input type="text" class="form-control" id="category" name="category"
                         placeholder="Masukkan nama kategori" wire:model="category">
                 </div>
                 <div class="mb-3">
-                    <label for="note" class="form-label">Catatan</label>
+                    <label for="note" class="form-label fw-bold">Catatan</label>
                     <textarea class="form-control" id="note" name="note" rows="2" wire:model="note"
                         placeholder="Catatan tambahan (opsional)"></textarea>
                 </div>

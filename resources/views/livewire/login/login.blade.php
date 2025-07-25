@@ -4,7 +4,7 @@
         <form wire:submit.prevent="storeLogin">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label fw-bold">Email</label>
                 <input type="email" wire:model="email" class="form-control" id="email" name="email" required
                     autofocus>
                 @error('email')
@@ -12,7 +12,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Kata Sandi</label>
+                <label for="password" class="form-label fw-bold">Kata Sandi</label>
                 <input type="password" wire:model="password" class="form-control" id="password" name="password"
                     required>
                 @error('password')

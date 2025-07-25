@@ -27,7 +27,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin') }}"
                                 class="nav-link {{ route_has_active_admin('') ? 'active' : 'text-dark' }}">
-                                <i class="bi bi-house-door me-2"></i> Dashboard
+                                <i class="bi bi-house-door me-2"></i> Beranda
                             </a>
                         </li>
                         <li>
@@ -63,7 +63,13 @@
                         <li>
                             <a href="{{ route('admin-contact') }}"
                                 class="nav-link {{ route_has_active_admin('contact') ? 'active' : 'text-dark' }}">
-                                <i class="bi bi-person-heart me-2"></i> Contact
+                                <i class="bi bi-person-heart me-2"></i> Kontak
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin-setting') }}"
+                                class="nav-link {{ route_has_active_admin('setting') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-gear me-2"></i> Pengaturan
                             </a>
                         </li>
                     </ul>
