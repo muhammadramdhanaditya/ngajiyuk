@@ -117,16 +117,26 @@
                                             <tr>
                                                 <th>Nama Kelas</th>
                                                 <th>Tanggal Pembelian</th>
+                                                <th>Bukti Transfer</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($purchasedClasses as $class)
+                                            @forelse($transactions as $transaction)
                                                 <tr>
-                                                    <td>{{ $class['name'] }}</td>
-                                                    <td>{{ $class['purchase_date'] }}</td>
-                                                    <td><span
-                                                            class="badge bg-{{ $class['status'] === 'Aktif' ? 'success' : 'secondary' }}">{{ $class['status'] }}</span>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $transaction->created_at }}</td>
+                                                    <td><a href="{{ $transaction->bukti_transfer_url }}"
+                                                            target="_blank">Lihat bukti</a></td>
+                                                    <td>
+                                                        @if ($transaction->is_accepted === 0)
+                                                            <span class="badge bg-warning">Pending</span>
+                                                        @elseif ($transaction->is_accepted === 1)
+                                                            <span class="badge bg-success">Aktif</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Berhenti</span>
+                                                        @endif
+
                                                     </td>
                                                 </tr>
                                             @empty

@@ -6,8 +6,11 @@ use Livewire\Component;
 use App\Models\ClassModel;
 use App\Models\SettingModel;
 use Livewire\WithFileUploads;
+use App\Models\UserClassModel;
 use App\Models\TransactionModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class Index extends Component
 {
@@ -15,7 +18,18 @@ class Index extends Component
     use WithFileUploads;
 
     public $selectedClass;
-    public $paymentProof;
+    public $bukti_transfer;
+
+    public function mount()
+    {
+        if (session()->has('store')) {
+            LivewireAlert::title(session('store.title'))->text(session('store.text'))
+                ->toast()
+                ->position('top-end')
+                ->success()
+                ->show();
+        }
+    }
 
     public function showClassDetail($classId)
     {
@@ -46,15 +60,30 @@ class Index extends Component
     public function submitPayment()
     {
         $this->validate([
-            'paymentProof' => 'required|image|max:5120',
+            'bukti_transfer' => 'required|image|max:5120',
         ]);
 
-        $path = $this->paymentProof->store('public/bukti_transfer');
+        $path = $this->bukti_transfer->store('public/bukti_transfer');
+        $users = Auth::user();
 
-        TransactionModel::create([
+
+        $transaction = TransactionModel::create([
+            'users_id' => $users->id,
             'class_id' => $this->selectedClass->id,
-            'bukti_pembayaran_url' => Storage::url($path),
-            'is_accepted' => 0
+            'bukti_transfer_url' => Storage::url($path),
+            'is_accepted' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
+        UserClassModel::create([
+            'users_id' => $users->id,
+            'class_id' => $this->selectedClass->id,
+            'transaction_id' => $transaction->id,
+            'visibility' => 'off',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
 

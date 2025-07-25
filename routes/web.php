@@ -44,6 +44,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/gallery/add', [App\Http\Controllers\AdminController::class, 'addGallery'])->name('admin-gallery-add');
     Route::get('/gallery/edit/{id}', [App\Http\Controllers\AdminController::class, 'editGallery'])->name('admin-gallery-edit');
     Route::get('/contact', [App\Http\Controllers\AdminController::class, 'contact'])->name('admin-contact');
+    Route::get('/transaction', [App\Http\Controllers\AdminController::class, 'transaction'])->name('admin-transaction');
     Route::get('/setting', [App\Http\Controllers\AdminController::class, 'setting'])->name('admin-setting');
 });
 

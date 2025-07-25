@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionModel extends Model
+class UserClassModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaction';
+    protected $table = 'user_class';
 
     protected $fillable = [
         'users_id',
         'class_id',
-        'bukti_transfer_url',
-        'is_accepted',
+        'transaction_id',
+        'visibility',
     ];
 
-    public function user()
+
+    public function users()
     {
         return $this->belongsTo(UserModel::class, 'users_id');
     }
@@ -26,5 +27,10 @@ class TransactionModel extends Model
     public function class()
     {
         return $this->belongsTo(ClassModel::class, 'class_id');
+    }
+
+    public function transaction()
+    {
+        return $this->belongsTo(TransactionModel::class, 'transaction_id');
     }
 }

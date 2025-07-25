@@ -72,6 +72,12 @@ class AdminController extends Controller
         return view('admin.contact.index');
     }
 
+    public function transaction()
+    {
+        return view('admin.transaction.index');
+    }
+
+
     public function setting()
     {
 

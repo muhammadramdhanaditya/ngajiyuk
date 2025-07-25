@@ -18,7 +18,7 @@ class SettingSeeder extends Seeder
                 'name' => 'Ngajiyuk',
                 'name_bank' => 'BNI',
                 'number_bank' => '2223884381293',
-                'qr_code_url' => '/storage/qr_code/qr-1.png',
+                'qr_code_url' => '/storage/qr_code/qr_code.jpeg',
                 'title_home' => 'Ayo Mulai Mengaji Bersama NgajiYuk!',
                 'note_home' => "Gabung bersama komunitas kami untuk memperdalam ilmu Al-Qur'an dan mempererat ukhuwah Islamiyah.",
             ]

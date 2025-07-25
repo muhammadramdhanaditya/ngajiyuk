@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\TransactionModel;
 use Livewire\Component;
 use App\Models\UserModel;
 use Livewire\WithFileUploads;
@@ -13,7 +14,7 @@ class Index extends Component
 {
     use WithFileUploads;
 
-    public $activeTab = 'profile'; // Default active tab
+    public $activeTab = 'profile';
 
     public $id;
     public $user;
@@ -24,9 +25,7 @@ class Index extends Component
     public $profilePhotoUrl;
     public $role;
     public $isAdminRequest;
-    public $showSuccessMessage = false;
 
-    public $purchasedClasses = [];
 
     public function mount()
     {
@@ -39,10 +38,6 @@ class Index extends Component
         $this->role = $this->user->role;
         $this->isAdminRequest = $this->user->is_admin_request;
 
-        $this->purchasedClasses = [
-            ['id' => 1, 'name' => 'Belajar Iqro 1 Bersama Ustadz', 'purchase_date' => '2023-10-15', 'status' => 'Selesai'],
-            ['id' => 2, 'name' => 'Tahsin Lanjutan', 'purchase_date' => '2023-11-01', 'status' => 'Aktif'],
-        ];
 
         if (session()->has('store')) {
             LivewireAlert::title(session('store.title'))
@@ -54,7 +49,8 @@ class Index extends Component
     }
     public function render()
     {
-        return view('livewire.profile.index');
+        $data['transactions'] = TransactionModel::where(['users_id' => $this->id])->with(['user', 'class'])->orderBy('id', 'desc')->get();
+        return view('livewire.profile.index', $data);
     }
 
     public function requestAdmin()

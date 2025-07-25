@@ -58,25 +58,57 @@
                 <div class="modal-body">
                     @if ($selectedClass)
                         <div class="row">
-                            <div class="col-md-6">
-                                <h6>Detail Jadwal</h6>
-                                <ul class="list-unstyled">
-                                    <li class="mb-2"><i class="bi bi-calendar-week me-2"></i>
-                                        {{ implode(', ', json_decode($selectedClass->day, true)) }}
-                                    </li>
-                                    <li class="mb-2"><i class="bi bi-clock me-2"></i>
-                                        {{ $selectedClass->time_start }} - {{ $selectedClass->time_end }}
-                                    </li>
-                                    <li class="mb-2"><i class="bi bi-person me-2"></i>
-                                        {{ $selectedClass->teacher->name }}
-                                    </li>
-                                    <li><i class="bi bi-geo-alt me-2"></i>
-                                        {{ $selectedClass->location->name }} ({{ $selectedClass->location->type }})
-                                    </li>
-                                </ul>
+                            <div class="col-md-12 d-flex flex-column gap-3">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-6 d-flex flex-column gap-1">
+                                        <h6>Detail Jadwal</h6>
+                                        <ul class="list-unstyled mb-0">
+                                            <li><i class="bi bi-calendar-week me-2"></i>
+                                                {{ implode(', ', json_decode($selectedClass->day, true)) }}
+                                            </li>
+                                            <li><i class="bi bi-clock me-2"></i>
+                                                {{ $selectedClass->time_start }} - {{ $selectedClass->time_end }}
+                                            </li>
 
-                                <h6 class="mt-4">Deskripsi</h6>
-                                <p>{{ $selectedClass->description }}</p>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 d-flex flex-column gap-1">
+                                        <h6>Deskripsi</h6>
+                                        <p>{{ $selectedClass->note }}</p>
+                                    </div>
+                                </div>
+                                <div class="row d-flex justify-content-between align-items-start">
+                                    <div class="col-md-6 flex-1 d-flex flex-column gap-1">
+                                        <span class="fw-bold"><i class="bi bi-person me-2"></i>
+                                            Pengajar</span>
+                                        <div class="d-flex gap-2 align-items-center">
+                                            @if ($selectedClass->teacher->profile_photo_url)
+                                                <img src="{{ $$selectedClass->teacher->profile_photo_url }}"
+                                                    alt="Preview" class="img-fluid rounded-circle"
+                                                    style="width: 50px; height: 50px; object-fit: cover;">
+                                            @else
+                                                <div class="bg-secondary rounded-circle d-flex justify-content-center align-items-center"
+                                                    style="width: 50px; height: 50px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30"
+                                                        height="30" fill="white" class="bi bi-person-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                                    </svg>
+                                                </div>
+                                            @endif
+                                            {{ $selectedClass->teacher->name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 flex-1 d-flex flex-column gap-1"><span class="fw-bold"><i
+                                                class="bi bi-geo-alt me-2"></i> Alamat</span>
+                                        <span>{{ $selectedClass->location->name }}
+                                            ({{ $selectedClass->location->type }})</span>
+                                        <span>{{ $selectedClass->location->detail_address }}</span>
+                                        <span>{{ $selectedClass->location->note }}</span>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -96,39 +128,41 @@
                     <h5 class="modal-title">Pendaftaran Kelas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <h6 class="mb-3">Rincian Pembayaran</h6>
-                    <p>Total: <strong>Rp {{ format_rupiah($selectedClass?->price ?? 0) }}</strong></p>
+                <form method="POST" wire:submit.prevent="submitPayment">
+                    @csrf
+                    <div class="modal-body">
+                        <h6 class="mb-3">Rincian Pembayaran</h6>
+                        <p>Total: <strong>Rp {{ format_rupiah($selectedClass?->price ?? 0) }}</strong></p>
+                        <div class="mb-4">
+                            <h6>Transfer Bank</h6>
+                            <p>{{ $settings->name_bank }}: {{ $settings->number_bank }} ({{ $settings->name }})</p>
+                        </div>
 
-                    <div class="mb-4">
-                        <h6>Transfer Bank</h6>
-                        <p>{{ $settings->name_bank }}: {{ $settings->number_bank }} ({{ $settings->name }})</p>
-                    </div>
+                        <div class="mb-4 text-center">
+                            <h6>Atau Scan QRIS</h6>
+                            <img src="{{ $settings->qr_code_url }}" alt="QRIS" class="img-fluid"
+                                style="max-width: 200px;">
+                        </div>
 
-                    <div class="mb-4 text-center">
-                        <h6>Atau Scan QRIS</h6>
-                        <img src="{{ $settings->qr_code_url }}" alt="QRIS" class="img-fluid"
-                            style="max-width: 200px;">
+                        <div class="mb-3">
+                            <label for="bukti_transfer" class="form-label">Upload Bukti Transfer</label>
+                            <input type="file" class="form-control" id="bukti_transfer"
+                                wire:model="bukti_transfer">
+                            @error('bukti_transfer')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="bukti_transfer" class="form-label">Upload Bukti Transfer</label>
-                        <input type="file" class="form-control" id="bukti_transfer" wire:model="bukti_transfer">
-                        @error('bukti_transfer')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Kirim Bukti</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" wire:click="submitPayment">Kirim Bukti</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Modal Detail Kelas -->
 
 
 @push('scripts')

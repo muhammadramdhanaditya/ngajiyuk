@@ -67,6 +67,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('admin-transaction') }}"
+                                class="nav-link {{ route_has_active_admin('transaction') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-receipt me-2"></i> Transaksi
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin-setting') }}"
                                 class="nav-link {{ route_has_active_admin('setting') ? 'active' : 'text-dark' }}">
                                 <i class="bi bi-gear me-2"></i> Pengaturan

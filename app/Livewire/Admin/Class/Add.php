@@ -53,6 +53,8 @@ class Add extends Component
             'price' => $this->price,
             'color' => $this->color,
             'note' => $this->note,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         session()->flash('store', [
             'title' => 'Berhasil membuat Kelas',
