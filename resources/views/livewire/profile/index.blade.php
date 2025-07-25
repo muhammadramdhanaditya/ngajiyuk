@@ -85,15 +85,16 @@
                                             <div
                                                 class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
                                                 <div>
-                                                    @if ($isAdminRequest === 2)
-                                                        @if ($role !== 'admin' && !$isAdminRequest)
-                                                            <button type="button" wire:click="requestAdmin"
-                                                                class="btn btn-success">Request Admin Access</button>
-                                                        @elseif($isAdminRequest)
-                                                            <div class="text-warning">Permintaan admin Anda sedang
-                                                                diproses.
-                                                            </div>
-                                                        @endif
+                                                    @if ($role !== 'admin' && $isAdminRequest === 2)
+                                                        <button type="button" wire:click="requestAdmin"
+                                                            class="btn btn-success">Request Admin Access</button>
+                                                    @elseif($role !== 'admin' && $isAdminRequest === 1)
+                                                        <div class="text-primary">Permintaan admin Anda sedang
+                                                            diproses.
+                                                        </div>
+                                                    @elseif($role !== 'admin' && $isAdminRequest === 3)
+                                                        <div class="text-success">Anda Sudah menjadi Admin
+                                                        </div>
                                                     @endif
                                                 </div>
                                                 <div class="text-end mt-2 mt-md-0"><button type="submit"

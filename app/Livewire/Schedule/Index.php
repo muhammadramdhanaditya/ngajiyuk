@@ -3,6 +3,7 @@
 namespace App\Livewire\Schedule;
 
 use Livewire\Component;
+use App\Models\ClassModel;
 
 class Index extends Component
 {
@@ -10,7 +11,9 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.schedule.index');
+        $data['classes'] = ClassModel::with(['teacher', 'location'])->get();
+
+        return view('livewire.schedule.index', $data);
     }
 
 

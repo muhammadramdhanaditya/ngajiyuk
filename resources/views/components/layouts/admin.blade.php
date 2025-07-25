@@ -49,18 +49,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-dark">
+                            <a href="{{ route('admin-user') }}"
+                                class="nav-link {{ route_has_active_admin('user') ? 'active' : 'text-dark' }}">
                                 <i class="bi bi-people me-2"></i> Peserta
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-dark">
-                                <i class="bi bi-calendar-event me-2"></i> Jadwal
+                            <a href="{{ route('admin-gallery') }}"
+                                class="nav-link {{ route_has_active_admin('gallery') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-images me-2"></i> Galeri
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-dark">
-                                <i class="bi bi-images me-2"></i> Galeri
+                            <a href="{{ route('admin-contact') }}"
+                                class="nav-link {{ route_has_active_admin('contact') ? 'active' : 'text-dark' }}">
+                                <i class="bi bi-person-heart me-2"></i> Contact
                             </a>
                         </li>
                     </ul>
@@ -69,7 +72,9 @@
             <div class="col p-0">
                 <nav class="navbar navbar-light bg-white shadow-sm px-4">
                     <div class="container-fluid">
-                        <span></span>
+                        <a href="{{ route('home') }}" class="btn btn-success">
+                            Halaman User
+                        </a>
                         <div class="d-flex align-items-center">
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"

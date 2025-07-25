@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassModel;
+use App\Models\GalleryModel;
 use App\Models\TeacherModel;
 use App\Models\LocationModel;
 
@@ -58,5 +59,29 @@ class AdminController extends Controller
     {
         $data['teacher'] = TeacherModel::find($id);
         return view('admin.teacher.edit', $data);
+    }
+
+    public function user()
+    {
+        return view('admin.user.index');
+    }
+
+    public function contact()
+    {
+        return view('admin.contact.index');
+    }
+
+    public function gallery()
+    {
+        return view('admin.gallery.index');
+    }
+    public function addGallery()
+    {
+        return view('admin.gallery.add');
+    }
+    public function editGallery($id)
+    {
+        $data['gallerys'] = GalleryModel::with('pics')->find($id);
+        return view('admin.gallery.edit', $data);
     }
 }

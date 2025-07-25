@@ -43,10 +43,31 @@ class Index extends Component
             ['id' => 1, 'name' => 'Belajar Iqro 1 Bersama Ustadz', 'purchase_date' => '2023-10-15', 'status' => 'Selesai'],
             ['id' => 2, 'name' => 'Tahsin Lanjutan', 'purchase_date' => '2023-11-01', 'status' => 'Aktif'],
         ];
+
+        if (session()->has('store')) {
+            LivewireAlert::title(session('store.title'))
+                ->toast()
+                ->position('top-end')
+                ->success()
+                ->show();
+        }
     }
     public function render()
     {
         return view('livewire.profile.index');
+    }
+
+    public function requestAdmin()
+    {
+        $data = [
+            'is_admin_request' => 1,
+        ];
+
+        UserModel::where('id', $this->id)->update($data);
+        session()->flash('store', [
+            'title' => 'Berhasil mengirim permintaan admin',
+        ]);
+        return redirect()->route('profile');
     }
 
 
@@ -89,13 +110,6 @@ class Index extends Component
             ->position('top-end')
             ->success()
             ->show();
-    }
-
-    public function requestAdmin()
-    {
-        $this->user->update(['is_admin_request' => true]);
-        $this->isAdminRequest = true;
-        session()->flash('message', 'Permintaan admin telah dikirim.');
     }
 
     public function setActiveTab($tab)

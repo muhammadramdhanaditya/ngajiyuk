@@ -65,6 +65,12 @@
                     <a href="{{ route('login') }}" class="btn btn-outline-primary px-3">Login</a>
                 @endguest
                 @auth
+                    @if (Auth::user()->role == 'admin')
+                        <a href="{{ route('admin') }}" class="btn btn-success">
+                            Halaman Admin
+                        </a>
+                    @endif
+
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

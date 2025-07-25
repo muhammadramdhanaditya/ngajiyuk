@@ -12,20 +12,27 @@
             <div class="col-lg-6">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
-                        <form>
+                        <form method="POST" wire:submit.prevent="storeContactUs">
+                            @csrf
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
                                 <input type="text" class="form-control" id="nama" placeholder="Nama Anda"
-                                    required>
+                                    wire:model="name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="email@domain.com"
-                                    required>
+                                    wire:model="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="pesan" class="form-label">Pesan</label>
-                                <textarea class="form-control" id="pesan" rows="4" placeholder="Tulis pesan Anda..." required></textarea>
+                                <label for="phone" class="form-label">Telepon</label>
+                                <input type="text" class="form-control" id="phone" placeholder="08xxxxxxx"
+                                    wire:model="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Pesan</label>
+                                <textarea class="form-control" id="message" rows="4" wire:model="message" placeholder="Tulis pesan Anda..."
+                                    required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
                         </form>
@@ -48,8 +55,8 @@
                                 class="text-decoration-none text-dark">{{ config('services.info.whatsapp') }}</a>
                         </div>
                         <div class="mb-3 d-flex align-items-center">
-                            <i class="bi bi-envelope-fill text-primary me-3 fs-4"></i>
-                            <a href="mailto:{{ config('services.info.email') }}  text-dark"
+                            <i class="bi bi-envelope-fill text-primary me-3 fs-4 "></i>
+                            <a href="mailto:{{ config('services.info.email') }}  "
                                 target="_blank">{{ config('services.info.email') }}</a>
                         </div>
                         <div class="mb-3 d-flex align-items-center">

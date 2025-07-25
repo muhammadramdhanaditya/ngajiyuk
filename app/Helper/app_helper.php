@@ -25,6 +25,14 @@ if (!function_exists('route_has_active_admin')) {
     }
 }
 
+if (!function_exists('format_rupiah')) {
+    function format_rupiah($angka)
+    {
+        $hasil = number_format($angka, 0, ",", ".");
+        return $hasil;
+    }
+}
+
 if (!function_exists('isAdmin')) {
     function isAdmin($user)
     {

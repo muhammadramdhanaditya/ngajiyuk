@@ -72,7 +72,6 @@
             </div>
             <div class="col-md-6 text-md-end">
                 <a href="#" class="text-muted text-decoration-none me-2 me-md-3 small">Privacy Policy</a>
-                <!-- Margin disesuaikan -->
                 <a href="#" class="text-muted text-decoration-none me-2 me-md-3 small">Terms of Services</a>
                 <a href="#" class="text-muted text-decoration-none small">Cookie Policy</a>
             </div>

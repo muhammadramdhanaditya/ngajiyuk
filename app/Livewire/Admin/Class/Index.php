@@ -25,4 +25,13 @@ class Index extends Component
         // dd($data);
         return view('livewire.admin.class.index', $data);
     }
+
+    public function destroy($id)
+    {
+        ClassModel::destroy($id);
+        session()->flash('store', [
+            'title' => 'Berhasil Menghapus Kelas',
+        ]);
+        return $this->redirect(route('admin-class'), navigate: true);
+    }
 }

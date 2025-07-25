@@ -28,7 +28,8 @@
                     <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Jadwal fleksibel sesuai
                         kebutuhan</li>
                 </ul>
-                <a href="#kontak" class="btn btn-primary px-4">Hubungi Kami</a>
+                <a href="https://wa.me/{{ config('services.info.whatsapp') }}?text=Saya%20ingin%20bertanya%20untuk%20les%20mengaji"
+                    target="_blank" class="btn btn-primary px-4">Hubungi Kami</a>
             </div>
         </div>
     </div>
