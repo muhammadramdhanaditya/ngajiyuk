@@ -20,7 +20,7 @@ class Add extends Component
     public $time_end;
     public $timezone = 'WIB';
     public $price;
-    public $color;
+    public $color = "#0d6efd";
     public $note;
 
 
