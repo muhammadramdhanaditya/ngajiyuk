@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('gallery', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->enum('type', ['home', 'gallery']);
             $table->timestamps();
         });

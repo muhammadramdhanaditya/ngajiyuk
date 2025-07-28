@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('time_start');
             $table->string('time_end');
             $table->enum('timezone', ['WIB', 'WITA', 'WIT']);
-            $table->string('price');
+            $table->string('price')->nullable();
             $table->string('color');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
