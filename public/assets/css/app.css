@@ -46,3 +46,18 @@
         height: var(--carousel-mobile-height);
     }
 }
+
+.ui-selectmenu-menu.ui-multiselect-menu {
+    z-index: 1000;
+}
+.ui-selectmenu-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* Style untuk input color */
+.form-control-color {
+    height: 38px;
+    width: 60px;
+    padding: 3px;
+}

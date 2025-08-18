@@ -15,10 +15,13 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(AdminSeeder::class);
+        $this->call(CategorySeeder::class);
         $this->call(LocationSeeder::class);
         $this->call(TeacherSeeder::class);
         $this->call(GallerySeeder::class);
         $this->call(GalleryPicSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(ClassSeeder::class);
+        $this->call(CategoryClassSeeder::class);
     }
 }

@@ -13,6 +13,10 @@
                                 <a class="nav-link @if ($activeTab === 'classes') active @endif" href="#"
                                     wire:click.prevent="setActiveTab('classes')" role="tab">Kelas Saya</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($activeTab === 'statistic') active @endif" href="#"
+                                    wire:click.prevent="setActiveTab('statistic')" role="tab">Statistik</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -145,6 +149,34 @@
                                                         apapun.</td>
                                                 </tr>
                                             @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade @if ($activeTab === 'statistic') show active @endif"
+                                role="tabpanel">
+                                <h5 class="mb-3">Statistik</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Kelas</th>
+                                                <th>Kategori Belajar</th>
+                                                <th>Nilai</th>
+                                                <th>Keterangan Nilai</th>
+                                                <th>Keterangan Belajar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($transactions as $transaction)
+                                                <tr>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $transaction->class->name }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -49,7 +49,7 @@ class Index extends Component
 
             session()->flash('store', [
                 'title' => 'Anda Harus Login Dulu',
-                'text' => 'jika ingin daftar kelas',
+                'text' => 'Jika ingin daftar kelas',
             ]);
             redirect()->route('login');
         }

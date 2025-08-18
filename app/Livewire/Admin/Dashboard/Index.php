@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Dashboard;
 
 use Livewire\Component;
+use App\Models\ClassModel;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class Index extends Component
@@ -21,6 +22,10 @@ class Index extends Component
     }
     public function render()
     {
-        return view('livewire.admin.dashboard.index');
+        $data = [
+            'classes' => ClassModel::all(),
+            'total_class' => ClassModel::count()
+        ];
+        return view('livewire.admin.dashboard.index', $data);
     }
 }

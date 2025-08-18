@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Admin\Class;
 
-use App\Models\ClassModel;
 use Livewire\Component;
+use App\Models\ClassModel;
+use App\Models\CategoryClassModel;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class Index extends Component
@@ -29,6 +30,7 @@ class Index extends Component
     public function destroy($id)
     {
         ClassModel::destroy($id);
+        CategoryClassModel::where('class_id', $id)->delete();
         session()->flash('store', [
             'title' => 'Berhasil Menghapus Kelas',
         ]);

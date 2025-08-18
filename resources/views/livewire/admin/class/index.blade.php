@@ -1,8 +1,13 @@
 <div class="container-fluid">
     <div class="col-lg-12">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1>List Kelas</h1>
-            <a href="{{ route('admin-class-add') }}" class="btn btn-primary">Tambah Kelas</a>
+            <div class="d-flex gap-2 align-items-center">
+                <h1>List Kelas</h1>
+                <a href="{{ route('admin-class-add') }}" class="btn btn-primary"><i class="bi bi-plus"></i> Tambah
+                    Kelas</a>
+            </div>
+            <a href="{{ route('admin-class-category') }}" class="btn btn-success"><i class="bi bi-book-half"></i> Kategori
+                Belajar</a>
         </div>
     </div>
     <!-- Tabel DataTables -->
@@ -25,7 +30,8 @@
                             @foreach ($classes as $i => $class)
                                 <tr>
                                     <td>{{ $i + 1 }}</td>
-                                    <td>{{ $class->name }}</td>
+                                    <td><a href="{{ route('admin-class-user', $class->id) }}">{{ $class->name }}</a>
+                                    </td>
                                     <td>{{ ucfirst($class->teacher->name) }}</td>
                                     <td>{{ ucfirst($class->location->name) }}</td>
                                     <td>{{ $class->note }}</td>

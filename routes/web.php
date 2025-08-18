@@ -38,6 +38,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/teacher/edit/{id}', [App\Http\Controllers\AdminController::class, 'editTeacher'])->name('admin-teacher-edit');
     Route::get('/class', [App\Http\Controllers\AdminController::class, 'class'])->name('admin-class');
     Route::get('/class/add', [App\Http\Controllers\AdminController::class, 'addClass'])->name('admin-class-add');
+    Route::get('/class/category', [App\Http\Controllers\AdminController::class, 'categoryClass'])->name('admin-class-category');
+    Route::get('/class/user/{id}', [App\Http\Controllers\AdminController::class, 'userClass'])->name('admin-class-user');
+    Route::get('/class/user/evaluation/{id}', [App\Http\Controllers\AdminController::class, 'evaluationClass'])->name('admin-class-user-evaluation');
     Route::get('/class/edit/{id}', [App\Http\Controllers\AdminController::class, 'editClass'])->name('admin-class-edit');
     Route::get('/user', [App\Http\Controllers\AdminController::class, 'user'])->name('admin-user');
     Route::get('/gallery', [App\Http\Controllers\AdminController::class, 'gallery'])->name('admin-gallery');

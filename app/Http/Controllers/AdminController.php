@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryClassModel;
 use App\Models\ClassModel;
 use App\Models\GalleryModel;
 use App\Models\SettingModel;
 use App\Models\TeacherModel;
 use App\Models\LocationModel;
+use App\Models\UserClassModel;
 
 class AdminController extends Controller
 {
@@ -28,9 +30,24 @@ class AdminController extends Controller
     {
         return view('admin.class.add');
     }
+    public function categoryClass()
+    {
+        return view('admin.class.category');
+    }
+    public function userClass($id)
+    {
+        $data['userclass'] = UserClassModel::with(['users', 'class'])->where(['class_id' => $id])->get();
+        return view('admin.class.user', $data);
+    }
+    public function userEvaluationClass($id)
+    {
+        $data['userclass'] = UserClassModel::find($id);
+        return view('admin.class.evaluation');
+    }
     public function editClass($id)
     {
         $data['classes'] = ClassModel::find($id);
+        $data['selectedCategories'] = CategoryClassModel::where(['class_id' => $id])->with(['class', 'category'])->get();
         return view('admin.class.edit', $data);
     }
 
