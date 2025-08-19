@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryClassModel;
 use App\Models\ClassModel;
+use App\Models\EvaluationClassModel;
 use App\Models\GalleryModel;
 use App\Models\SettingModel;
 use App\Models\TeacherModel;
@@ -39,10 +40,26 @@ class AdminController extends Controller
         $data['userclass'] = UserClassModel::with(['users', 'class'])->where(['class_id' => $id])->get();
         return view('admin.class.user', $data);
     }
-    public function userEvaluationClass($id)
+    public function userEvaluationClass($class_id, $users_id)
     {
-        $data['userclass'] = UserClassModel::find($id);
-        return view('admin.class.evaluation');
+        $category_class = CategoryClassModel::with(['class', 'category'])->where(['class_id' => $class_id])->get();
+        $category_class_ids = $category_class->pluck('id')->toArray();
+        $data['evaluations'] = EvaluationClassModel::with(['categoryClass', 'users', 'categoryClass.class', 'categoryClass.category'])
+            ->whereIn('category_class_id', $category_class_ids)
+            ->where('users_id', $users_id)
+            ->get();
+
+        $data['category_class'] = $category_class;
+        $data['users_id'] = $users_id;
+        $data['class_id'] = $class_id;
+        return view('admin.class.evaluation', $data);
+    }
+    public function addUserEvaluationClass($class_id, $users_id)
+    {
+        $data['categories'] = CategoryClassModel::with(['class', 'category'])->where(['class_id' => $class_id])->get();
+        $data['users_id'] = $users_id;
+        $data['class_id'] = $class_id;
+        return view('admin.class.add-evaluation', $data);
     }
     public function editClass($id)
     {

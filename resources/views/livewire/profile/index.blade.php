@@ -157,24 +157,26 @@
                                 role="tabpanel">
                                 <h5 class="mb-3">Statistik</h5>
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table id="evaluationTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Nama Kelas</th>
+                                                <th>No</th>
+                                                <th>Kelas</th>
                                                 <th>Kategori Belajar</th>
                                                 <th>Nilai</th>
                                                 <th>Keterangan Nilai</th>
-                                                <th>Keterangan Belajar</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($transactions as $transaction)
+                                            @foreach ($evaluations as $i => $evaluation)
                                                 <tr>
-                                                    <td>{{ $transaction->class->name }}</td>
-                                                    <td>{{ $transaction->class->name }}</td>
-                                                    <td>{{ $transaction->class->name }}</td>
-                                                    <td>{{ $transaction->class->name }}</td>
-                                                    <td>{{ $transaction->class->name }}</td>
+                                                    <td>{{ $i + 1 }}</td>
+                                                    <td>{{ $evaluation->categoryClass->class->name }}</td>
+                                                    <td>{{ $evaluation->categoryClass->category->name }}</td>
+                                                    <td>{{ $evaluation->value }}</td>
+                                                    <td>{{ $evaluation->note_value }}</td>
+                                                    <td>{{ $evaluation->note }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -188,3 +190,11 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#evaluationTable').DataTable();
+        });
+    </script>
+@endpush

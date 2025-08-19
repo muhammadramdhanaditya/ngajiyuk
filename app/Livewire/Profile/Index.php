@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Profile;
 
-use App\Models\TransactionModel;
 use Livewire\Component;
 use App\Models\UserModel;
 use Livewire\WithFileUploads;
+use App\Models\TransactionModel;
+use App\Models\EvaluationClassModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
@@ -50,6 +51,9 @@ class Index extends Component
     public function render()
     {
         $data['transactions'] = TransactionModel::where(['users_id' => $this->id])->with(['user', 'class'])->orderBy('id', 'desc')->get();
+        $data['evaluations'] = EvaluationClassModel::with(['categoryClass', 'users', 'categoryClass.class', 'categoryClass.category'])
+            ->where('users_id', $this->id)
+            ->get();
         return view('livewire.profile.index', $data);
     }
 

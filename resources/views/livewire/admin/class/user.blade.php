@@ -30,7 +30,7 @@
                                     <td>{{ $i + 1 }}</td>
                                     <td>{{ $user->users->name }}</td>
                                     <td>
-                                        <a href="{{ route('admin-class-user-evaluation', $user->users->id) }}"
+                                        <a href="{{ route('admin-class-user-evaluation', ['class_id' => $class_id, 'users_id' => $user->users->id]) }}"
                                             class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
                                     </td>
                                 </tr>
