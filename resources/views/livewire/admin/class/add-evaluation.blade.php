@@ -1,7 +1,22 @@
 <div class="container mt-3">
+    <div class="col-lg-12">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin-class') }}">Kelas</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin-class-user', ['id' => $class_id]) }}">User
+                        Kelas</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('admin-class-user-evaluation-add', ['class_id' => $class_id, 'users_id' => $users_id]) }}"
+                        class="btn btn-success">User
+                        Evaluasi</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah Evaluasi</li>
+            </ol>
+        </nav>
+    </div>
     <div class="card">
         <div class="card-header">
-            <h5>Tambah Evaluasi</h5>
+            <h5>Tambah Evaluasi {{ $users->name }}</h5>
         </div>
         <div class="card-body">
             <form method="POST" wire:submit.prevent="storeEvaluationClass">

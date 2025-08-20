@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Client\Request;
 use App\Models\EvaluationClassModel;
+use App\Models\UserModel;
 
 class AddEvaluation extends Component
 {
@@ -39,6 +40,7 @@ class AddEvaluation extends Component
     public function render()
     {
         $data['categories'] = $this->categories;
+        $data['users'] = UserModel::find($this->users_id);
         return view('livewire.admin.class.add-evaluation', $data);
     }
 

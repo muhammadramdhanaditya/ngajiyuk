@@ -116,7 +116,7 @@
                                 role="tabpanel">
                                 <h5 class="mb-3">Kelas yang Telah Dibeli</h5>
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table id="transactionTable" class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>Nama Kelas</th>
@@ -195,6 +195,7 @@
     <script>
         $(document).ready(function() {
             $('#evaluationTable').DataTable();
+            $('#transactionTable').DataTable();
         });
     </script>
 @endpush
