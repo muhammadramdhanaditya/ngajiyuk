@@ -13,7 +13,9 @@ class User extends Component
     public function mount()
     {
         if ($this->userclass !== null) {
-            $this->class_id = $this->userclass[0]->class->id;
+            $this->class_id = $this->userclass[0]->class->id ?? [];
+        } else {
+            $this->userclass = [];
         }
     }
 
