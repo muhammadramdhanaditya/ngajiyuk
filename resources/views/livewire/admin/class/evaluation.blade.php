@@ -13,8 +13,7 @@
     <div class="col-lg-12">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>List Evaluasi {{ $users->name }}</h1>
-
-            @if (!isset($evaluations))
+            @if (count($evaluations) <= 0)
                 <a href="{{ route('admin-class-user-evaluation-add', ['class_id' => $class_id, 'users_id' => $users_id]) }}"
                     class="btn btn-success"><i class="bi bi-plus"></i>
                     Tambah

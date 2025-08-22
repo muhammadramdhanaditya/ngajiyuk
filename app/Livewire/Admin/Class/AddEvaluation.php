@@ -52,7 +52,7 @@ class AddEvaluation extends Component
                 'users_id' => $this->users_id,
                 'value' => $evaluation['value'],
                 'note_value' => $this->note_value[$evaluation['value']] ?? '',
-                'note' => $evaluation['note'],
+                'note' => $evaluation['note'] ?? 'Tidak ada keterangan dari Guru',
             ]);
         }
         session()->flash('store', [
