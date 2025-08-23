@@ -37,7 +37,9 @@ class AdminController extends Controller
     }
     public function userClass($id)
     {
-        $data['userclass'] = UserClassModel::with(['users', 'class'])->where(['class_id' => $id])->get();
+        $data['userclass'] = UserClassModel::with(['users', 'class', 'transaction'])->where(['class_id' => $id])->whereHas('transaction', function ($query) {
+            $query->where('is_accepted', 1);
+        })->get();
         return view('admin.class.user', $data);
     }
     public function userEvaluationClass($class_id, $users_id)

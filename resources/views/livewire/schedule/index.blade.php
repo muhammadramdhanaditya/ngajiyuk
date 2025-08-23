@@ -112,6 +112,8 @@
                             </div>
                         </div>
                     @endif
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -120,44 +122,95 @@
         </div>
     </div>
 
-    <!-- Modal Pembayaran -->
     <div wire:ignore.self class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                <!-- Header Modal berdasarkan status -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Pendaftaran Kelas</h5>
+                    @if ($getTransactions === null)
+                        <h5 class="modal-title">Pendaftaran Kelas {{ $selectedClass->name ?? '' }}</h5>
+                    @elseif ($getTransactions->is_accepted === 0)
+                        <h5 class="modal-title">Menunggu Konfirmasi Admin</h5>
+                    @else
+                        <h5 class="modal-title">Anda Sudah Terdaftar</h5>
+                    @endif
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" wire:submit.prevent="submitPayment">
-                    @csrf
-                    <div class="modal-body">
-                        <h6 class="mb-3">Rincian Pembayaran</h6>
-                        <p>Total: <strong>Rp {{ format_rupiah($selectedClass?->price ?? 0) }}</strong></p>
-                        <div class="mb-4">
-                            <h6>Transfer Bank</h6>
-                            <p>{{ $settings->name_bank }}: {{ $settings->number_bank }} ({{ $settings->name }})</p>
+
+                <!-- Body Modal berdasarkan status -->
+                <div class="modal-body">
+                    @if ($getTransactions === null)
+                        <!-- Status: Belum Daftar -->
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Silakan lengkapi pembayaran untuk mendaftar kelas.
                         </div>
 
-                        <div class="mb-4 text-center">
-                            <h6>Atau Scan QRIS</h6>
-                            <img src="{{ $settings->qr_code_url }}" alt="QRIS" class="img-fluid"
-                                style="max-width: 200px;">
+                        <form method="POST" wire:submit.prevent="submitPayment">
+                            @csrf
+                            <h6 class="mb-3">Rincian Pembayaran</h6>
+                            <p>Total: <strong>Rp {{ format_rupiah($selectedClass?->price ?? 0) }}</strong></p>
+
+                            <div class="mb-4">
+                                <h6>Transfer Bank</h6>
+                                <p>{{ $settings->name_bank }}: {{ $settings->number_bank }} ({{ $settings->name }})
+                                </p>
+                            </div>
+
+                            <div class="mb-4 text-center">
+                                <h6>Atau Scan QRIS</h6>
+                                <img src="{{ $settings->qr_code_url }}" alt="QRIS" class="img-fluid"
+                                    style="max-width: 200px;">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="bukti_transfer" class="form-label">Upload Bukti Transfer</label>
+                                <input type="file" class="form-control" id="bukti_transfer"
+                                    wire:model="bukti_transfer">
+                                @error('bukti_transfer')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Kirim Bukti</button>
+                            </div>
+                        </form>
+                    @elseif ($getTransactions->is_accepted === 0)
+                        <div class="text-center py-4">
+                            <div class="mb-3">
+                                <i class="bi bi-clock-history display-4 text-warning"></i>
+                            </div>
+                            <h5 class="text-warning">Pendaftaran dalam Proses Verifikasi</h5>
+                            <p class="text-muted">Admin akan memverifikasi pembayaran Anda dalam 1x24 jam.</p>
+
                         </div>
 
-                        <div class="mb-3">
-                            <label for="bukti_transfer" class="form-label">Upload Bukti Transfer</label>
-                            <input type="file" class="form-control" id="bukti_transfer"
-                                wire:model="bukti_transfer">
-                            @error('bukti_transfer')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Kirim Bukti</button>
-                    </div>
-                </form>
+                    @else
+                        <!-- Status: Sudah Terdaftar -->
+                        <div class="text-center py-4">
+                            <div class="mb-3">
+                                <i class="bi bi-check-circle display-4 text-success"></i>
+                            </div>
+                            <h5 class="text-success">Pendaftaran Berhasil</h5>
+                            <p class="text-muted">Anda sudah terdaftar di kelas ini.</p>
+
+                            <div class="mt-4 p-3 bg-light rounded">
+                                <h6>Detail Kelas:</h6>
+                                <p>Kelas: <strong>{{ $selectedClass->name }}</strong></p>
+                                <p>Tanggal Konfirmasi: {{ $getTransactions->updated_at->format('d M Y H:i') }}</p>
+                                <p>Status: <span class="badge bg-success">Terkonfirmasi</span></p>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
@@ -175,7 +228,9 @@
 
             Livewire.on('hide-payment-modal', () => {
                 const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
-                paymentModal.hide();
+                if (paymentModal) {
+                    paymentModal.hide();
+                }
             });
         });
     </script>
