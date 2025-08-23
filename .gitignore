@@ -5,7 +5,7 @@
 /public/storage
 /storage/framework
 /storage/logs
-/storage/*.key
+# /storage/*.key
 /vendor
 .env
 .env.backup
